@@ -50,7 +50,8 @@ ISR(PCINT0_vect) {
 }
 
 /*!
-    @brief   Configure the diabolo light to read button input and save power
+    @brief   Configure the diabolo light to read button input and save power.
+             Call this in the setup function.
     @param   num_modes  a nonnegative number which is the number of modes
              the board should have not including the off mode
     @param   on_wake_up an optional parameter for additional things
@@ -75,7 +76,9 @@ void Diabolo_Light::begin(const int num_modes, func_ptr on_wake_up) {
 }
 
 /*!
-    @brief   Read button input and change current_mode if necessary
+    @brief   Read button input and change current_mode if necessary.
+             Call this in the loop function. Make your loop function
+             non-blocking or else current_mode will not update.
 */
 void Diabolo_Light::handle_button() {
     int reading = digitalRead(Diabolo_Light::BUTTON_PIN);
