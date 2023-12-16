@@ -10,7 +10,7 @@ uint16_t hue = 0;
 void setup() {
     pixels.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
 
-    // Initialize the diabolo light with 1 mode (not including the off mode)
+    // Initialize the diabolo light with 1 on mode (there's a default off mode built into the library)
     // and make the board set the hue to 0 whenever the board turns on
     begin(1, [](){ hue = 0; });
 }
