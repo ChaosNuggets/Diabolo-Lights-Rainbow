@@ -1,3 +1,5 @@
+// TODO: add link to YT video of this program in action
+
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 #include <Diabolo_Light.h>
@@ -10,9 +12,10 @@ uint16_t hue = 0;
 void setup() {
     pixels.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
 
-    // Initialize the diabolo light with 1 on mode (there's a default off mode built into the library)
-    // and make the board set the hue to 0 whenever the board turns on
-    begin(1, [](){ hue = 0; });
+    // Initialize the diabolo light with 1 on mode (there's a default off mode built into the library),
+    // require the board to be held for 500ms in order for it to turn on,
+    // and make the board set the hue to 0 whenever the board wakes up
+    begin(1, 500, [](){ hue = 0; });
 }
 
 void loop() {
@@ -20,10 +23,13 @@ void loop() {
     // Also determine whether or not the board should shut off.
     handle_button();
 
-    // Do the rainbow effect
-    for (int i = 0; i < NUM_LEDS; i++) {
-        pixels.setPixelColor(i, pixels.ColorHSV(hue, 255, 255));
+    // If the current mode is the first mode
+    if (get_current_mode() == 1) {
+        // Do the rainbow effect
+        for (int i = 0; i < NUM_LEDS; i++) {
+            pixels.setPixelColor(i, pixels.ColorHSV(hue, 255, 255));
+        }
+        pixels.show();
+        hue += 5;
     }
-    pixels.show();
-    hue += 5;
 }
