@@ -6,7 +6,7 @@
 
 using namespace Diabolo_Light;
 
-Adafruit_NeoPixel pixels(NUM_LEDS, LED_PIN, NEO_RGB + NEO_KHZ800);
+Adafruit_NeoPixel pixels(NUM_LEDS, LED_PIN, LED_TYPE);
 uint16_t hue = 0;
 
 void setup() {
@@ -26,7 +26,7 @@ void loop() {
     // If the current mode is the first mode
     if (get_current_mode() == 1) {
         // Do the rainbow effect
-        for (int i = 0; i < NUM_LEDS; i++) {
+        for (unsigned int i = 0; i < NUM_LEDS; i++) {
             pixels.setPixelColor(i, pixels.ColorHSV(hue, 255, 255));
         }
         pixels.show();
