@@ -1,4 +1,4 @@
-// TODO: add link to YT video of this program in action
+// Program in action: https://youtu.be/cGEZ_opQ9x8
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>

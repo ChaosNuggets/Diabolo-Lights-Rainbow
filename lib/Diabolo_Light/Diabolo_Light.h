@@ -1,7 +1,6 @@
 #ifndef DIABOLO_LIGHT_H
 #define DIABOLO_LIGHT_H
 
-#include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
 namespace Diabolo_Light {
